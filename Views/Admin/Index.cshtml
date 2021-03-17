@@ -1,10 +1,14 @@
 ﻿@model AdminWM
 
-<html>
-<head>
-</head>
-<body>
-    <table border="1" style="padding:10px; text-align:center;">
+@{
+    Layout = "";
+}
+
+@*<html>
+    <head>
+    </head>
+    <body>*@
+@*<table border="1" style="padding:10px; text-align:center;">
         <thead>
             <tr>
                 <th>Ürün Adı</th>
@@ -22,60 +26,242 @@
                 </tr>
             }
         </tbody>
-    </table>
+    </table>*@
 
 
 
-    <div id="curve_chart" style="width: 1900px; height: 1500px"></div>
-    <script src="~/lib/jquery/dist/jquery.js"></script>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
+@*<div id="curve_chart" style="width: 900px; height: 500px">
+            <script src="~/lib/jquery/dist/jquery.js"></script>
+            <script src="~/lib/jquery/dist/jquery.min.js"></script>
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('.Choose').off('click').on('click', function () {
+                        var id = $(this).data("id");
+                        $.ajax({
+                            url: "@Url.Action("GetProductDataForChart", "Admin")",
+                            type: "GET",
+                            data: { id: id },
+                            dataType: "Json",
+                            success: function (product) {
+                                console.log(product);
+                                google.charts.load('current', { 'packages': ['corechart'] });
+                                google.charts.setOnLoadCallback(drawChart);
+                                function drawChart() {
+                                    var data = google.visualization.arrayToDataTable([
+                                        ['Year', 'Sales'],
+                                        ['Ocak', product.ocak],
+                                        ['Subat', product.şubat],
+                                        ['Mart', product.mart],
+                                        ['Nisan', product.nisan],
+                                        ['Mayıs', product.mayıs],
+                                        ['Haziran', product.haziran],
+                                        ['Temmuz', product.temmuz],
+                                        ['Ağustos', product.ağustos],
+                                        ['Eylül', product.eylül],
+                                        ['Ekim', product.ekim],
+                                        ['Kasım', product.kasım],
+                                        ['Aralık', product.aralık],
+                                    ]);
+                                    var options = {
+                                        title: 'Company Performance',
+                                        curveType: 'function',
+                                        legend: { position: 'bottom' }
+                                    };
+                                    var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+                                    chart.draw(data, options);
+                                }
+                            }
+                        });
+                    });
+                });
+            </script>
+        </div>
+    </body>
+    </html>*@
 
-            $('.Choose').off('click').on('click', function () {
-                var id = $(this).data("id");
-                $.ajax({
-                    url: "@Url.Action("GetProductDataForChart", "Admin")",
-                    type: "GET",
-                    data: { id: id },
-                    dataType: "Json",
-                    success: function (product) {
-                        console.log(product);
-                        google.charts.load('current', { 'packages': ['corechart'] });
-                        google.charts.setOnLoadCallback(drawChart);
 
-                        function drawChart() {
-                            var data = google.visualization.arrayToDataTable([
-                                ['Year', 'Sales'],
-                                ['Ocak', product.ocak],
-                                ['Subat', product.şubat],
-                                ['Mart', product.mart],
-                                ['Nisan', product.nisan],
-                                ['Mayıs', product.mayıs],
-                                ['Haziran', product.haziran],
-                                ['Temmuz', product.temmuz],
-                                ['Ağustos', product.ağustos],
-                                ['Eylül', product.eylül],
-                                ['Ekim', product.ekim],
-                                ['Kasım', product.kasım],
-                                ['Aralık', product.aralık],
-                            ]);
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
 
-                            var options = {
-                                title: 'Company Performance',
-                                curveType: 'function',
-                                legend: { position: 'bottom' }
-                            };
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords"
+          content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 5 admin, bootstrap 5, css3 dashboard, bootstrap 5 dashboard, Ample lite admin bootstrap 5 dashboard, frontend, responsive bootstrap 5 admin template, Ample admin lite dashboard bootstrap 5 dashboard template">
+    <meta name="description"
+          content="Ample Admin Lite is powerful and clean admin dashboard template, inpired from Bootstrap Framework">
+    <meta name="robots" content="noindex,nofollow">
+    <title></title>
+    <link rel="canonical" href="" />
+    <link rel="icon" type="image/png" sizes="16x16" href="data/plugins/images/favicon.png">
+    <link href="~/Data/plugins/bower_components/chartist/dist/chartist.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/Data/plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css">
+    <link href="~/Data/css/style.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+         data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+        <header class="topbar" data-navbarbg="skin5">
+            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+                <div class="navbar-header" data-logobg="skin6">
+                    <a class="navbar-brand" href="dashboard.html">
+                        <b class="logo-icon">
+                            <img src="~/Data/plugins/images/logo-icon.png" alt="homepage" />
+                        </b>
+                        <span class="logo-text">
+                            <img src="~/Data/plugins/images/logo-text.png" alt="homepage" />
+                        </span>
+                    </a>
+                    <a class="nav-toggler waves-effect waves-light text-dark d-block d-md-none"
+                       href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
+                </div>
+                <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
+                    <ul class="navbar-nav ms-auto d-flex align-items-center">
 
-                            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-
-                            chart.draw(data, options);
+                        <li>
+                            <a class="profile-pic" href="#">
+                                <img src="data/plugins/images/users/varun.jpg" alt="user-img" width="36"
+                                     class="img-circle"><span class="text-white font-medium">ADMIN</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <aside class="left-sidebar" data-sidebarbg="skin6">
+            <div class="scroll-sidebar">
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav">
+                        <li class="sidebar-item pt-2">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dashboard.html"
+                               aria-expanded="false">
+                                <i class="far fa-clock" aria-hidden="true"></i>
+                                <span class="hide-menu">Detay Tablosu</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="profile.html"
+                               aria-expanded="false">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                                <span class="hide-menu">Profile</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+        <div class="page-wrapper">
+            <div class="page-breadcrumb bg-white">
+                <div class="row align-items-center">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title">Satış Grafiği</h4>
+                    </div>
+                </div>
+            </div>
+            <div id="curve_chart" style="width: 100%; min-height: 450px ">
+                <script src="~/lib/jquery/dist/jquery.js"></script>
+                <script src="~/lib/jquery/dist/jquery.min.js"></script>
+                <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                <script type="text/javascript">
+            $(document).ready(function () {
+                $('.Choose').off('click').on('click', function () {
+                    var id = $(this).data("id");
+                    $.ajax({
+                        url: "@Url.Action("GetProductDataForChart", "Admin")",
+                        type: "GET",
+                        data: { id: id },
+                        dataType: "Json",
+                        success: function (product) {
+                            console.log(product);
+                            google.charts.load('current', { 'packages': ['corechart'] });
+                            google.charts.setOnLoadCallback(drawChart);
+                            function drawChart() {
+                                var data = google.visualization.arrayToDataTable([
+                                    ['Year', 'Sales'],
+                                    ['Ocak', product.ocak],
+                                    ['Subat', product.şubat],
+                                    ['Mart', product.mart],
+                                    ['Nisan', product.nisan],
+                                    ['Mayıs', product.mayıs],
+                                    ['Haziran', product.haziran],
+                                    ['Temmuz', product.temmuz],
+                                    ['Ağustos', product.ağustos],
+                                    ['Eylül', product.eylül],
+                                    ['Ekim', product.ekim],
+                                    ['Kasım', product.kasım],
+                                    ['Aralık', product.aralık],
+                                ]);
+                                var options = {
+                                    title: 'Satış Performans Grafiği',
+                                    curveType: 'function',
+                                    legend: { position: 'bottom' }
+                                };
+                                var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+                                chart.draw(data, options);
+                            }
                         }
-                    }
+                    });
                 });
             });
-        });
-    </script>
+                </script>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-lg-12 col-sm-12">
+                    <div class="white-box">
+                        <div class="d-md-flex mb-3">
+                            <h3 class="box-title mb-0">Recent sales</h3>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table no-wrap">
+                                <thead>
+                                    <tr>
+                                        <th class="border-top-0">#</th>
+                                        <th class="border-top-0">Ürün Adı</th>
+                                        <th class="border-top-0">Ürün Markası</th>
+                                        <th class="border-top-0"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.Products)
+                                    {
+                                        <tr>
+                                            <td></td>
+                                            <td>@item.ProductName</td>
+                                            <td>@item.BrandName</td>
+                                            <td><button type="button" class="Choose btn-cyan" data-id="@item.Id">Seç</button></td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="footer text-center">
+                2021 © ARK
+            </footer>
+        </div>
+    </div>
+
+    <script src="~/Data/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="~/Data/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Data/js/app-style-switcher.js"></script>
+    <script src="~/Data/plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js"></script>
+    <script src="~/Data/js/waves.js"></script>
+    <script src="~/Data/js/sidebarmenu.js"></script>
+    <script src="~/Data/js/custom.js"></script>
+
+    <script src="~/Data/plugins/bower_components/chartist/dist/chartist.min.js"></script>
+    <script src="~/Data/plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
+    <script src="~/Data/js/pages/dashboards/dashboard1.js"></script>
 </body>
+
 </html>

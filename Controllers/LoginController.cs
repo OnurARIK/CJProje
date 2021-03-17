@@ -16,21 +16,21 @@ namespace CJProje.Controllers
         {
             var admin = new User()
             {
-                UserName = "Admin",
-                UserPass = "Admin",
-                UserRole = "Admin"
+                UserName = "admin",
+                UserPass = "admin",
+                UserRole = "admin"
             };
 
             var marka = new User()
             {
-                UserName = "Marka",
-                UserPass = "Marka",
+                UserName = "adidas",
+                UserPass = "adidas",
                 UserRole = "Uye",
             };
             var marka2 = new User()
             {
-                UserName = "Marka2",
-                UserPass = "Marka2",
+                UserName = "nike",
+                UserPass = "nike",
                 UserRole = "Uye",
             };
 
