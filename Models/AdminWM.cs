@@ -7,6 +7,6 @@ namespace CJProje.Models
 {
     public class AdminWM
     {
-
+      
     }
 }
