@@ -4,81 +4,6 @@
     Layout = "";
 }
 
-@*<html>
-    <head>
-    </head>
-    <body>*@
-@*<table border="1" style="padding:10px; text-align:center;">
-        <thead>
-            <tr>
-                <th>Ürün Adı</th>
-                <th>Marka</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.Products)
-            {
-                <tr>
-                    <td>@item.ProductName</td>
-                    <td>@item.BrandName</td>
-                    <td><button class="Choose" data-id="@item.Id">Seç</button></td>
-                </tr>
-            }
-        </tbody>
-    </table>*@
-
-
-
-@*<div id="curve_chart" style="width: 900px; height: 500px">
-            <script src="~/lib/jquery/dist/jquery.js"></script>
-            <script src="~/lib/jquery/dist/jquery.min.js"></script>
-            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-            <script type="text/javascript">
-                $(document).ready(function () {
-                    $('.Choose').off('click').on('click', function () {
-                        var id = $(this).data("id");
-                        $.ajax({
-                            url: "@Url.Action("GetProductDataForChart", "Admin")",
-                            type: "GET",
-                            data: { id: id },
-                            dataType: "Json",
-                            success: function (product) {
-                                console.log(product);
-                                google.charts.load('current', { 'packages': ['corechart'] });
-                                google.charts.setOnLoadCallback(drawChart);
-                                function drawChart() {
-                                    var data = google.visualization.arrayToDataTable([
-                                        ['Year', 'Sales'],
-                                        ['Ocak', product.ocak],
-                                        ['Subat', product.şubat],
-                                        ['Mart', product.mart],
-                                        ['Nisan', product.nisan],
-                                        ['Mayıs', product.mayıs],
-                                        ['Haziran', product.haziran],
-                                        ['Temmuz', product.temmuz],
-                                        ['Ağustos', product.ağustos],
-                                        ['Eylül', product.eylül],
-                                        ['Ekim', product.ekim],
-                                        ['Kasım', product.kasım],
-                                        ['Aralık', product.aralık],
-                                    ]);
-                                    var options = {
-                                        title: 'Company Performance',
-                                        curveType: 'function',
-                                        legend: { position: 'bottom' }
-                                    };
-                                    var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-                                    chart.draw(data, options);
-                                }
-                            }
-                        });
-                    });
-                });
-            </script>
-        </div>
-    </body>
-    </html>*@
 
 
 <!DOCTYPE html>
@@ -114,10 +39,10 @@
                 <div class="navbar-header" data-logobg="skin6">
                     <a class="navbar-brand" href="dashboard.html">
                         <b class="logo-icon">
-                            <img src="~/Data/plugins/images/logo-icon.png" alt="homepage" />
+
                         </b>
                         <span class="logo-text">
-                            <img src="~/Data/plugins/images/logo-text.png" alt="homepage" />
+
                         </span>
                     </a>
                     <a class="nav-toggler waves-effect waves-light text-dark d-block d-md-none"
@@ -146,14 +71,7 @@
                                 <i class="far fa-clock" aria-hidden="true"></i>
                                 <span class="hide-menu">Detay Tablosu</span>
                             </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="profile.html"
-                               aria-expanded="false">
-                                <i class="fa fa-user" aria-hidden="true"></i>
-                                <span class="hide-menu">Profile</span>
-                            </a>
-                        </li>
+                        </li>                       
                     </ul>
                 </nav>
             </div>
@@ -171,46 +89,46 @@
                 <script src="~/lib/jquery/dist/jquery.min.js"></script>
                 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
                 <script type="text/javascript">
-            $(document).ready(function () {
-                $('.Choose').off('click').on('click', function () {
-                    var id = $(this).data("id");
-                    $.ajax({
-                        url: "@Url.Action("GetProductDataForChart", "Admin")",
-                        type: "GET",
-                        data: { id: id },
-                        dataType: "Json",
-                        success: function (product) {
-                            console.log(product);
-                            google.charts.load('current', { 'packages': ['corechart'] });
-                            google.charts.setOnLoadCallback(drawChart);
-                            function drawChart() {
-                                var data = google.visualization.arrayToDataTable([
-                                    ['Year', 'Sales'],
-                                    ['Ocak', product.ocak],
-                                    ['Subat', product.şubat],
-                                    ['Mart', product.mart],
-                                    ['Nisan', product.nisan],
-                                    ['Mayıs', product.mayıs],
-                                    ['Haziran', product.haziran],
-                                    ['Temmuz', product.temmuz],
-                                    ['Ağustos', product.ağustos],
-                                    ['Eylül', product.eylül],
-                                    ['Ekim', product.ekim],
-                                    ['Kasım', product.kasım],
-                                    ['Aralık', product.aralık],
-                                ]);
-                                var options = {
-                                    title: 'Satış Performans Grafiği',
-                                    curveType: 'function',
-                                    legend: { position: 'bottom' }
-                                };
-                                var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-                                chart.draw(data, options);
-                            }
-                        }
+                    $(document).ready(function () {
+                        $('.Choose').off('click').on('click', function () {
+                            var id = $(this).data("id");
+                            $.ajax({
+                                url: "@Url.Action("GetProductDataForChart", "Admin")",
+                                type: "GET",
+                                data: { id: id },
+                                dataType: "Json",
+                                success: function (product) {
+                                    console.log(product);
+                                    google.charts.load('current', { 'packages': ['corechart'] });
+                                    google.charts.setOnLoadCallback(drawChart);
+                                    function drawChart() {
+                                        var data = google.visualization.arrayToDataTable([
+                                            ['Year', 'Aylık Satış'],
+                                            ['Ocak', product.ocak],
+                                            ['Subat', product.şubat],
+                                            ['Mart', product.mart],
+                                            ['Nisan', product.nisan],
+                                            ['Mayıs', product.mayıs],
+                                            ['Haziran', product.haziran],
+                                            ['Temmuz', product.temmuz],
+                                            ['Ağustos', product.ağustos],
+                                            ['Eylül', product.eylül],
+                                            ['Ekim', product.ekim],
+                                            ['Kasım', product.kasım],
+                                            ['Aralık', product.aralık],
+                                        ]);
+                                        var options = {
+                                            title: 'Satış Performans Grafiği',
+                                            curveType: 'function',
+                                            legend: { position: 'bottom' }
+                                        };
+                                        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+                                        chart.draw(data, options);
+                                    }
+                                }
+                            });
+                        });
                     });
-                });
-            });
                 </script>
             </div>
             <div class="row">
@@ -233,7 +151,7 @@
                                     @foreach (var item in Model.Products)
                                     {
                                         <tr>
-                                            <td></td>
+                                            <td>*</td>
                                             <td>@item.ProductName</td>
                                             <td>@item.BrandName</td>
                                             <td><button type="button" class="Choose btn-cyan" data-id="@item.Id">Seç</button></td>
@@ -245,11 +163,11 @@
                     </div>
                 </div>
             </div>
-            <footer class="footer text-center">
-                2021 © ARK
-            </footer>
         </div>
     </div>
+    <footer class="footer text-center">
+        2021 © ARK
+    </footer>
 
     <script src="~/Data/plugins/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="~/Data/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
