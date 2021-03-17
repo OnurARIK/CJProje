@@ -8,7 +8,7 @@ namespace CJProje.Models
     public class Brand
     {
         public int Id { get; set; }
-        public string brandName { get; set; }
+        public string BrandName { get; set; }
 
     }
 }

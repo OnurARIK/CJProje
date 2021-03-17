@@ -5,9 +5,10 @@ using System.Threading.Tasks;
 
 namespace CJProje.Models
 {
-    public class Login
+    public class User
     {
         public string UserName { get; set; }
-        public string Password { get; set; }        
+        public string UserPass { get; set; }
+        public string UserRole { get; set; }
     }
 }

@@ -8,7 +8,7 @@ namespace CJProje.Models
     public class Order
     {
         public int Id { get; set; }
-        public string orderName { get; set; }
-        public string orderDetail { get; set; }
+        public string OrderName { get; set; }
+        public string OrderDetail { get; set; }
     }
 }
