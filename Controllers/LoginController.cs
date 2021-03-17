@@ -27,7 +27,12 @@ namespace CJProje.Controllers
                 UserPass = "Marka",
                 UserRole = "Uye",
             };
-
+            var marka2 = new User()
+            {
+                UserName = "Marka2",
+                UserPass = "Marka2",
+                UserRole = "Uye",
+            };
 
             if (model.UserName == admin.UserName && model.Password == admin.UserPass)
                 return RedirectToAction("Index", "Admin");
