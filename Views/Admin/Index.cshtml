@@ -1,5 +1,81 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model AdminWM
+
+<html>
+<head>
+</head>
+<body>
+    <table border="1" style="padding:10px; text-align:center;">
+        <thead>
+            <tr>
+                <th>Ürün Adı</th>
+                <th>Marka</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Products)
+            {
+                <tr>
+                    <td>@item.ProductName</td>
+                    <td>@item.BrandName</td>
+                    <td><button class="Choose" data-id="@item.Id">Seç</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+
+    <div id="curve_chart" style="width: 1900px; height: 1500px"></div>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('.Choose').off('click').on('click', function () {
+                var id = $(this).data("id");
+                $.ajax({
+                    url: "@Url.Action("GetProductDataForChart", "Admin")",
+                    type: "GET",
+                    data: { id: id },
+                    dataType: "Json",
+                    success: function (product) {
+                        console.log(product);
+                        google.charts.load('current', { 'packages': ['corechart'] });
+                        google.charts.setOnLoadCallback(drawChart);
+
+                        function drawChart() {
+                            var data = google.visualization.arrayToDataTable([
+                                ['Year', 'Sales'],
+                                ['Ocak', product.ocak],
+                                ['Subat', product.şubat],
+                                ['Mart', product.mart],
+                                ['Nisan', product.nisan],
+                                ['Mayıs', product.mayıs],
+                                ['Haziran', product.haziran],
+                                ['Temmuz', product.temmuz],
+                                ['Ağustos', product.ağustos],
+                                ['Eylül', product.eylül],
+                                ['Ekim', product.ekim],
+                                ['Kasım', product.kasım],
+                                ['Aralık', product.aralık],
+                            ]);
+
+                            var options = {
+                                title: 'Company Performance',
+                                curveType: 'function',
+                                legend: { position: 'bottom' }
+                            };
+
+                            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+                            chart.draw(data, options);
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
